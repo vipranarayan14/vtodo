@@ -4,8 +4,13 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
-        bg: 'green.50',
+        bg: 'gray.100',
       },
+    },
+  },
+  textStyles: {
+    h1: {
+      fontWeight: '500',
     },
   },
 });
