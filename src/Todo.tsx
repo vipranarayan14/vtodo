@@ -17,6 +17,11 @@ type Props = {
   };
 };
 
+/**
+  Removes '@' and '+' prefixes
+**/
+const removePrefix = (tag: string): string => tag.slice(1);
+
 export const Todo: React.FC<Props> = ({ todo }) => {
   const text: string = todo.textTokens().join(' ');
   const isComplete: boolean = todo.isComplete();
@@ -37,14 +42,14 @@ export const Todo: React.FC<Props> = ({ todo }) => {
                 contexts.map((context) => (
                   <Tag colorScheme="blue">
                     <TagLeftIcon as={AtSignIcon} boxSize="12px"></TagLeftIcon>
-                    <TagLabel>{context.slice(1)}</TagLabel>
+                    <TagLabel>{removePrefix(context)}</TagLabel>
                   </Tag>
                 ))}
               {hasProjects &&
                 projects.map((project) => (
                   <Tag colorScheme="orange">
                     <TagLeftIcon as={AddIcon} boxSize="12px"></TagLeftIcon>
-                    <TagLabel>{project.slice(1)}</TagLabel>
+                    <TagLabel>{removePrefix(project)}</TagLabel>
                   </Tag>
                 ))}
             </HStack>
