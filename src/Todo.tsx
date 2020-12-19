@@ -21,6 +21,15 @@ type Props = {
   Removes '@' and '+' prefixes
 **/
 const removePrefix = (tag: string): string => tag.slice(1);
+const getPriorityColor = (priority: any): any => {
+  const priorityColors: { [key: string]: string } = {
+    A: 'red.500',
+    B: 'orange.400',
+    C: 'blue.500',
+    D: 'green.500',
+  };
+  return priorityColors[priority] || 'white';
+};
 
 export const Todo: React.FC<Props> = ({ todo }) => {
   const text: string = todo.textTokens().join(' ');
@@ -29,11 +38,20 @@ export const Todo: React.FC<Props> = ({ todo }) => {
   const projects: string[] = todo.projects();
   const hasContexts: boolean = !!contexts.length;
   const hasProjects: boolean = !!projects.length;
+  const priority = todo.priority();
 
   return (
-    <Box padding="5" shadow="base" bg="white" rounded="md">
+    <Box
+      padding="5"
+      shadow="base"
+      bg="white"
+      rounded="md"
+      borderLeftColor={getPriorityColor(priority)}
+      borderLeftWidth="5px"
+      borderLeftStyle="solid"
+    >
       <HStack spacing="3" align="start">
-        <Checkbox size="lg" defaultIsChecked={isComplete}></Checkbox>
+        <Checkbox size="lg" defaultIsChecked={isComplete} mt="2.5px"></Checkbox>
         <VStack align="start">
           <Box>{text}</Box>
           {(hasContexts || hasProjects) && (
