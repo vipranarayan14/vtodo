@@ -12,14 +12,18 @@ import {
 import { AddIcon, AtSignIcon } from '@chakra-ui/icons';
 
 type Props = {
-  text: string;
-  contexts: string[];
-  projects: string[];
+  todo: {
+    [key: string]: any;
+  };
 };
 
-export const Todo: React.FC<Props> = ({ text, contexts, projects }) => {
-  const hasContexts = !!contexts.length;
-  const hasProjects = !!projects.length;
+export const Todo: React.FC<Props> = ({ todo }) => {
+  const text: string = todo.textTokens().join(' ');
+  const isComplete: boolean = todo.isComplete();
+  const contexts: string[] = todo.contexts();
+  const projects: string[] = todo.projects();
+  const hasContexts: boolean = !!contexts.length;
+  const hasProjects: boolean = !!projects.length;
 
   return (
     <Box padding="5" shadow="base" bg="white" rounded="md">

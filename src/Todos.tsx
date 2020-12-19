@@ -28,15 +28,9 @@ export const Todos = () => {
     <Spinner />
   ) : (
     <VStack align="stretch" width={{ lg: '650px' }} margin="3">
-      {todos.map((todo, id) => {
-        const text = todo.textTokens().join(' ');
-        const contexts = todo.contexts();
-        const projects = todo.projects();
-
-        return (
-          <Todo text={text} contexts={contexts} projects={projects} key={id} />
-        );
-      })}
+      {todos.map((todo) => (
+        <Todo todo={todo} key={todo.id()} />
+      ))}
     </VStack>
   );
 };
