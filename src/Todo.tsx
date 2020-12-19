@@ -28,7 +28,7 @@ export const Todo: React.FC<Props> = ({ todo }) => {
   return (
     <Box padding="5" shadow="base" bg="white" rounded="md">
       <HStack spacing="3" align="start">
-        <Checkbox size="lg"></Checkbox>
+        <Checkbox size="lg" defaultIsChecked={isComplete}></Checkbox>
         <VStack align="start">
           <Box>{text}</Box>
           {(hasContexts || hasProjects) && (
