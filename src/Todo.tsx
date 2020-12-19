@@ -22,7 +22,7 @@ export const Todo: React.FC<Props> = ({ text, contexts, projects }) => {
   const hasProjects = !!projects.length;
 
   return (
-    <Box padding="5" shadow="base" bg="white">
+    <Box padding="5" shadow="base" bg="white" rounded="md">
       <HStack spacing="3">
         <Checkbox size="lg"></Checkbox>
         <VStack align="start">
