@@ -2,7 +2,11 @@ import React from 'react';
 
 import { Box, Heading, Text } from '@chakra-ui/react';
 
-export const Header = () => (
+type Props = {
+  tasksCount: number;
+};
+
+export const Header: React.FC<Props> = ({ tasksCount }) => (
   <Box
     as="header"
     bg="white"
@@ -14,10 +18,10 @@ export const Header = () => (
   >
     <Box width={{ lg: '650px' }} p="3" mx="auto">
       <Heading as="h1" textStyle="h1" ml="1">
-        Tasks
+        All Tasks
       </Heading>
       <Text fontSize="md" ml="2">
-        All tasks
+        {tasksCount} tasks
       </Text>
     </Box>
   </Box>
