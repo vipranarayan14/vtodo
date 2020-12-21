@@ -17,6 +17,7 @@
     "dropbox": "8.2.0",
     "framer-motion": "^2.9.5",
     "isomorphic-fetch": "3.0.0",
+    "query-string": "6.13.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^3.11.0",
