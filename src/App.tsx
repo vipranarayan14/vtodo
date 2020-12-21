@@ -1,20 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Center, ChakraProvider } from '@chakra-ui/react';
-import { Todos } from './Todos';
+import { ChakraProvider } from '@chakra-ui/react';
 
+import utils from './utils';
 import theme from './theme';
-import { Header } from './Header';
+import { Home } from './pages/Home';
+import { Auth } from './pages/Auth';
 
 export const App = () => {
-  const [tasksCount, setTasksCount] = useState<number>(0);
+  const [dbxAccessToken, setDbxAccessToken] = useState<string>('');
+
+  useEffect(() => {
+    const $dbxAccessToken: string = utils.getAccessToken();
+
+    if ($dbxAccessToken) {
+      setDbxAccessToken($dbxAccessToken);
+    }
+  }, []);
 
   return (
     <ChakraProvider theme={theme}>
-      <Header tasksCount={tasksCount} />
-      <Center as="main">
-        <Todos setTasksCount={(count: number) => setTasksCount(count)} />
-      </Center>
+      {!Boolean(dbxAccessToken) ? (
+        <Auth />
+      ) : (
+        <Home dbxAccessToken={dbxAccessToken} />
+      )}
     </ChakraProvider>
   );
 };
