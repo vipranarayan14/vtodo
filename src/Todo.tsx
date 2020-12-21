@@ -40,6 +40,14 @@ export const Todo: React.FC<Props> = ({ todo }) => {
   const hasProjects: boolean = !!projects.length;
   const priority = todo.priority();
 
+  const handleCheck = (e: any) => {
+    if (e.target.checked) {
+      todo.completeTask();
+    } else {
+      todo.uncompleteTask();
+    }
+  };
+
   return (
     <Box
       padding="5"
@@ -51,21 +59,27 @@ export const Todo: React.FC<Props> = ({ todo }) => {
       borderLeftStyle="solid"
     >
       <HStack spacing="3" align="start">
-        <Checkbox size="lg" defaultIsChecked={isComplete} mt="2.5px"></Checkbox>
+        <Checkbox
+          size="lg"
+          defaultIsChecked={isComplete}
+          mt="2.5px"
+          onChange={handleCheck}
+          isDisabled
+        ></Checkbox>
         <VStack align="start">
           <Box>{text}</Box>
           {(hasContexts || hasProjects) && (
             <HStack>
               {hasContexts &&
-                contexts.map((context) => (
-                  <Tag colorScheme="blue">
+                contexts.map((context, id) => (
+                  <Tag colorScheme="blue" key={context + id}>
                     <TagLeftIcon as={AtSignIcon} boxSize="12px"></TagLeftIcon>
                     <TagLabel>{removePrefix(context)}</TagLabel>
                   </Tag>
                 ))}
               {hasProjects &&
-                projects.map((project) => (
-                  <Tag colorScheme="orange">
+                projects.map((project, id) => (
+                  <Tag colorScheme="orange" key={project + id}>
                     <TagLeftIcon as={AddIcon} boxSize="12px"></TagLeftIcon>
                     <TagLabel>{removePrefix(project)}</TagLabel>
                   </Tag>
