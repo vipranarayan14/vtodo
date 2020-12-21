@@ -8,25 +8,36 @@ type vtodoFile = {
   contents: string;
 };
 
-const accessToken = process.env.REACT_APP_DBX_ACCESS_TOKEN;
+// const accessToken = process.env.REACT_APP_DBX_ACCESS_TOKEN;
 // create-react-app, by default, supports using custom environment variables through '.env' files.
 // Refer: https://create-react-app.dev/docs/adding-custom-environment-variables/
 
-const dbx = new Dropbox({ accessToken });
+const openFile = async (path: string, accessToken: string) => {
+  const dbx = new Dropbox({ accessToken });
 
-const openFile = async (path: string) => {
-  const { result } = await dbx.filesDownload({ path });
+  try {
+    const { result } = await dbx.filesDownload({ path });
 
-  const { fileBlob, ...metadata } = result as any;
+    const { fileBlob, ...metadata } = result as any;
 
-  const contents = await fileBlob?.text();
+    const contents = await fileBlob?.text();
 
-  const file: vtodoFile = { metadata, contents };
+    const file: vtodoFile = { metadata, contents };
 
-  return file;
+    return [file, null];
+  } catch (error) {
+    console.error(error);
+    return [null, error];
+  }
 };
 
-const updateFile = async (contents: string, file: vtodoFile) => {
+const updateFile = async (
+  contents: string,
+  file: vtodoFile,
+  accessToken: string
+) => {
+  const dbx = new Dropbox({ accessToken });
+
   const { path_display: path } = file.metadata;
 
   const mode: any = {
@@ -34,11 +45,20 @@ const updateFile = async (contents: string, file: vtodoFile) => {
     update: file.metadata.rev,
   };
 
-  const { result: metadata } = await dbx.filesUpload({ path, mode, contents });
+  try {
+    const { result: metadata } = await dbx.filesUpload({
+      path,
+      mode,
+      contents,
+    });
 
-  const savedFile = { metadata, contents };
+    const savedFile = { metadata, contents };
 
-  return savedFile;
+    return [savedFile, null];
+  } catch (error) {
+    console.error(error);
+    return [null, error];
+  }
 };
 
 const client = {
