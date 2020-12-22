@@ -22,33 +22,33 @@ const getAccessTokenFromUrlHash = (): string => {
   return accessToken;
 };
 
-const storeAccessToken = (accessToken: string): void => {
-  const encodedAccessToken = window.btoa(window.btoa(accessToken));
+const storeValue = (key: string, value: string): void => {
+  const encodedValue = window.btoa(window.btoa(value));
 
-  return window.localStorage.setItem(SESSION_KEY, encodedAccessToken);
+  return window.localStorage.setItem(key, encodedValue);
 };
 
-const retrieveAccessToken = (key: string): string => {
-  const encodedAccessToken = window.localStorage.getItem(SESSION_KEY);
+const retrieveValue = (key: string): string => {
+  const encodedValue = window.localStorage.getItem(key);
 
-  if (encodedAccessToken) {
-    const accessToken = window.atob(window.atob(encodedAccessToken));
+  if (encodedValue) {
+    const value = window.atob(window.atob(encodedValue));
 
-    return accessToken;
+    return value;
   }
 
   return '';
 };
 
 const getAccessToken = (): string => {
-  let accessToken = retrieveAccessToken(SESSION_KEY);
+  let accessToken = retrieveValue(SESSION_KEY);
 
   if (accessToken) return accessToken;
 
   accessToken = getAccessTokenFromUrlHash();
 
   if (accessToken) {
-    storeAccessToken(accessToken);
+    storeValue(SESSION_KEY, accessToken);
 
     return accessToken;
   }
