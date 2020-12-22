@@ -61,9 +61,26 @@ const updateFile = async (
   }
 };
 
+const getFilePath = async (sharedFileLink: string, accessToken: string) => {
+  const dbx = new Dropbox({ accessToken });
+  try {
+    const fileMetadata = await dbx.sharingGetSharedLinkMetadata({
+      url: sharedFileLink,
+    });
+
+    const filePath = fileMetadata?.result.path_lower;
+
+    return [filePath, null];
+  } catch (error) {
+    console.error(error);
+    return [null, error];
+  }
+};
+
 const client = {
   openFile,
   updateFile,
+  getFilePath,
 };
 
 export default client;

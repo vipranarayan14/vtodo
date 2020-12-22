@@ -1,6 +1,7 @@
 import queryString from 'query-string';
 
 const SESSION_KEY = 'vtodo-dropbox-session';
+const CONFIG_KEY = 'vtodo-config';
 
 const getAccessTokenFromUrlHash = (): string => {
   const { hash } = window.location;
@@ -56,8 +57,33 @@ const getAccessToken = (): string => {
   return '';
 };
 
+const clearAccessToken = () => window.localStorage.removeItem(SESSION_KEY);
+
+const getConfig = (): any => {
+  const config = retrieveValue(CONFIG_KEY);
+
+  if (config) {
+    return JSON.parse(config);
+  }
+
+  return null;
+};
+
+const setConfig = (config: any) =>
+  storeValue(CONFIG_KEY, JSON.stringify(config));
+
+const clearConfig = () => window.localStorage.removeItem(CONFIG_KEY);
+
+const clearStorage = () => {
+  clearAccessToken();
+  clearConfig();
+};
+
 const utils = {
   getAccessToken,
+  getConfig,
+  setConfig,
+  clearStorage,
 };
 
 export default utils;

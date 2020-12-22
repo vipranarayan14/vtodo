@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const Main: React.FC<Props> = ({ children }) => (
-  <Box width={{ lg: '650px' }} mx="auto">
+  <Box width={{ lg: '650px' }} mx="auto" p="2">
     {children}
   </Box>
 );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { ChakraProvider } from '@chakra-ui/react';
 
@@ -6,25 +6,25 @@ import utils from './utils';
 import theme from './theme';
 import { Home } from './pages/Home';
 import { Auth } from './pages/Auth';
+import { Settings } from './pages/Settings';
+
+const API_KEY = 'crpg0cmpv6ddpt8';
 
 export const App = () => {
-  const [dbxAccessToken, setDbxAccessToken] = useState<string>('');
+  const dbxAccessToken: string = utils.getAccessToken();
 
-  useEffect(() => {
-    const $dbxAccessToken: string = utils.getAccessToken();
-
-    if ($dbxAccessToken) {
-      setDbxAccessToken($dbxAccessToken);
-    }
-  }, []);
+  const config = utils.getConfig();
 
   return (
     <ChakraProvider theme={theme}>
-      {!Boolean(dbxAccessToken) ? (
-        <Auth />
-      ) : (
-        <Home dbxAccessToken={dbxAccessToken} />
-      )}
+      {(() => {
+        if (!Boolean(dbxAccessToken)) return <Auth apiKey={API_KEY} />;
+
+        if (!config || !config.todoFilePath)
+          return <Settings apiKey={API_KEY} dbxAccessToken={dbxAccessToken} />;
+
+        return <Home dbxAccessToken={dbxAccessToken} config={config} />;
+      })()}
     </ChakraProvider>
   );
 };

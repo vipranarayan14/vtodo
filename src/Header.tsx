@@ -17,7 +17,7 @@ export const Header: React.FC<Props> = ({ heading, subHeading }) => (
     top="0px"
     zIndex="sticky"
   >
-    <Box width={{ lg: '650px' }} p="3" mx="auto">
+    <Box width={{ lg: '650px' }} py="3" mx="auto">
       <Heading as="h1" textStyle="h1" ml="1">
         {heading}
       </Heading>

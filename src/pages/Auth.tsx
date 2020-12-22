@@ -9,17 +9,17 @@ import { Main } from '../Main';
 
 import dropboxLogo from '../rsrcs/icons/dropbox.svg';
 
-const API_KEY = 'crpg0cmpv6ddpt8';
-
-const dbxAuth = new DropboxAuth({ clientId: API_KEY });
-
 const redirectUri = window.location.origin + window.location.pathname;
 
-const authUrl = dbxAuth.getAuthenticationUrl(redirectUri);
+type Props = {
+  apiKey: string;
+};
 
-const goToAuthUrl = () => (window.location.href = authUrl);
+export const Auth: React.FC<Props> = ({ apiKey: clientId }) => {
+  const dbxAuth = new DropboxAuth({ clientId });
+  const authUrl = dbxAuth.getAuthenticationUrl(redirectUri);
+  const goToAuthUrl = () => (window.location.href = authUrl);
 
-export const Auth = () => {
   return (
     <>
       <Header heading="vTodo" />
