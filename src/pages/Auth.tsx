@@ -8,7 +8,9 @@ const API_KEY = 'crpg0cmpv6ddpt8';
 
 const dbxAuth = new DropboxAuth({ clientId: API_KEY });
 
-const authUrl = dbxAuth.getAuthenticationUrl('http://localhost:3000/auth');
+const redirectUri = window.location.origin + window.location.pathname;
+
+const authUrl = dbxAuth.getAuthenticationUrl(redirectUri);
 
 const goToAuthUrl = () => (window.location.href = authUrl);
 
