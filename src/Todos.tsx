@@ -47,7 +47,7 @@ export const Todos: React.FC<Props> = ({
   return !todos?.items().length ? (
     <Spinner />
   ) : (
-    <VStack align="stretch" width={{ lg: '650px' }} margin="2">
+    <VStack align="stretch" margin="2">
       {todos.items().map((todo: any) => (
         <Todo todo={todo} key={todo.id()} />
       ))}

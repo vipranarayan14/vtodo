@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
-import { Center } from '@chakra-ui/react';
-
-import { Todos } from './../Todos';
 import { Header } from './../Header';
+import { Main } from './../Main';
+import { Todos } from './../Todos';
 
 type Props = {
   dbxAccessToken: string;
@@ -14,13 +13,13 @@ export const Home: React.FC<Props> = ({ dbxAccessToken }) => {
 
   return (
     <>
-      <Header tasksCount={tasksCount} />
-      <Center as="main">
+      <Header heading="All Tasks" subHeading={`${tasksCount} tasks`} />
+      <Main>
         <Todos
           dbxAccessToken={dbxAccessToken}
           setTasksCount={(count: number) => setTasksCount(count)}
         />
-      </Center>
+      </Main>
     </>
   );
 };
