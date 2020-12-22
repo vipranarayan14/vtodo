@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "vTodo",
+  "name": "A task management app based on todo.txt",
   "icons": [
     {
       "src": "favicon.ico",
