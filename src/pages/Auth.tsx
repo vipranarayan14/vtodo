@@ -26,7 +26,7 @@ export const Auth = () => {
       <Main>
         <Center>
           <VStack width={{ lg: '350px' }} spacing="5" m="5">
-            <Image src={dropboxLogo} height="50px" my="5" />
+            <Image src={dropboxLogo} alt="dropbox logo" height="50px" my="5" />
             <Text my="5" align="center">
               Connect with your dropbox account to sync your tasks using
               'todo.txt' and 'done.txt' files.
