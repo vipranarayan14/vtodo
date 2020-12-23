@@ -1,20 +1,16 @@
 export module TodoTxt {}
 
-enum sortDirection {
-  SORT_ASC = 'asc',
-  SORT_DESC = 'desc',
-}
-
-type query = {
-  [key: string]: string | Function | string[];
-};
-
 type sortField =
   | 'priority'
   | 'createdDate'
   | 'completedDate'
   | 'isComplete'
   | 'lineNumber';
+
+enum sortDirection {
+  SORT_ASC = 'asc',
+  SORT_DESC = 'desc',
+}
 
 interface sortFieldOptions {
   field: sortField;
@@ -26,11 +22,34 @@ interface collections {
   projects: string[];
 }
 
+interface addons {
+  [key: string]: string;
+}
+
+type queryProp = string | string[];
+
+interface queryFunction<T> {
+  (arg: T): boolean;
+}
+
+interface query {
+  id?: queryProp | queryFunction<string>;
+  lineNumber?: queryProp | queryFunction<number>;
+  isComplete?: queryProp | queryFunction<boolean>;
+  completedDate?: queryProp | queryFunction<Date>;
+  priority?: queryProp | queryFunction<string>;
+  createdDate?: queryProp | queryFunction<Date>;
+  contexts?: queryProp | queryFunction<string[]>;
+  projects?: queryProp | queryFunction<string[]>;
+  addons?: queryProp | queryFunction<addons>;
+  textTokens?: queryProp | queryFunction<string[]>;
+}
+
 declare namespace TodoTxt {
   const SORT_ASC = sortDirection.SORT_ASC;
   const SORT_DESC = sortDirection.SORT_DESC;
 
-  interface Todo {
+  interface Todo extends TodoGetters {
     id: () => string;
     lineNumber: () => number;
     isComplete: () => false;
@@ -39,7 +58,7 @@ declare namespace TodoTxt {
     createdDate: () => Date | null;
     contexts: () => string[];
     projects: () => string[];
-    addons: () => { [key: string]: string };
+    addons: () => addons;
     textTokens: () => string[];
     completeTask: () => void;
     uncompleteTask: () => void;
