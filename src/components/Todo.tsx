@@ -40,7 +40,7 @@ export const Todo: React.FC<Props> = ({ todo }) => {
   const hasProjects: boolean = !!projects.length;
   const priority = todo.priority();
 
-  const handleCheck = (e: any) => {
+  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       todo.completeTask();
     } else {

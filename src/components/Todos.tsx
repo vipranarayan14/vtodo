@@ -27,7 +27,7 @@ const Todos: React.FC<TodosProps> = ({ todos }) => {
 
   return (
     <VStack align="stretch">
-      {sortedTodos.map((todo: any) => (
+      {sortedTodos.map((todo: TodoTxt.Todo) => (
         <Todo todo={todo} key={todo.id()} />
       ))}
     </VStack>
