@@ -18,12 +18,12 @@ type Props = {
 };
 
 type TodosProps = {
-  todos: any;
-  setTodos: any;
+  todos: TodoTxt.Todos;
+  setTodos: (todos: TodoTxt.Todos) => void;
 };
 
 const Todos: React.FC<TodosProps> = ({ todos }) => {
-  const sortedTodos = todos.items(null, ['priority']);
+  const sortedTodos = todos.items(undefined, ['priority']);
 
   return (
     <VStack align="stretch">
@@ -39,7 +39,7 @@ export const TodosManager: React.FC<Props> = ({
   config,
   dbxAccessToken: accessToken,
 }) => {
-  const [todos, setTodos] = useState<any>();
+  const [todos, setTodos] = useState<TodoTxt.Todos>();
   const [showError, setShowError] = useState<boolean>(false);
 
   useEffect(() => {
@@ -68,6 +68,6 @@ export const TodosManager: React.FC<Props> = ({
   return !todos?.items().length ? (
     <Spinner />
   ) : (
-    <Todos todos={todos} setTodos={setTodos} />
+    <Todos todos={todos} setTodos={(todos: TodoTxt.Todos) => setTodos(todos)} />
   );
 };

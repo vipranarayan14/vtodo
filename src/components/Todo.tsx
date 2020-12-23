@@ -11,17 +11,17 @@ import {
 } from '@chakra-ui/react';
 import { AddIcon, AtSignIcon } from '@chakra-ui/icons';
 
+import { TodoTxt } from '../lib/todotxt';
+
 type Props = {
-  todo: {
-    [key: string]: any;
-  };
+  todo: TodoTxt.Todo;
 };
 
 /**
   Removes '@' and '+' prefixes
 **/
 const removePrefix = (tag: string): string => tag.slice(1);
-const getPriorityColor = (priority: any): any => {
+const getPriorityColor = (priority: string): string => {
   const priorityColors: { [key: string]: string } = {
     A: 'red.500',
     B: 'orange.400',
