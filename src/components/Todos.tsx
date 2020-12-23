@@ -8,8 +8,6 @@ import { Box, Spinner, VStack } from '@chakra-ui/react';
 
 import { Todo } from './Todo';
 
-// import { sampleTodotxtFile as file } from './sample-todotxt';
-
 type Props = {
   dbxAccessToken: string;
   config: {
@@ -19,15 +17,30 @@ type Props = {
   setTasksCount: (count: number) => void;
 };
 
-export const Todos: React.FC<Props> = ({
+type TodosProps = {
+  todos: any;
+  setTodos: any;
+};
+
+const Todos: React.FC<TodosProps> = ({ todos }) => {
+  const sortedTodos = todos.items(null, ['priority']);
+
+  return (
+    <VStack align="stretch">
+      {sortedTodos.map((todo: any) => (
+        <Todo todo={todo} key={todo.id()} />
+      ))}
+    </VStack>
+  );
+};
+
+export const TodosManager: React.FC<Props> = ({
   setTasksCount,
   config,
   dbxAccessToken: accessToken,
 }) => {
   const [todos, setTodos] = useState<any>();
   const [showError, setShowError] = useState<boolean>(false);
-
-  // const sortedTodos = todos.items(null, ['priority']);
 
   useEffect(() => {
     (async () => {
@@ -55,10 +68,6 @@ export const Todos: React.FC<Props> = ({
   return !todos?.items().length ? (
     <Spinner />
   ) : (
-    <VStack align="stretch">
-      {todos.items(null, ['priority']).map((todo: any) => (
-        <Todo todo={todo} key={todo.id()} />
-      ))}
-    </VStack>
+    <Todos todos={todos} setTodos={setTodos} />
   );
 };

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Header } from './../components/Header';
 import { Main } from './../components/Main';
-import { Todos } from './../components/Todos';
+import { TodosManager } from './../components/Todos';
 
 type Props = {
   dbxAccessToken: string;
@@ -19,7 +19,7 @@ export const Home: React.FC<Props> = ({ dbxAccessToken, config }) => {
     <>
       <Header heading="All Tasks" subHeading={`${tasksCount} tasks`} />
       <Main>
-        <Todos
+        <TodosManager
           dbxAccessToken={dbxAccessToken}
           config={config}
           setTasksCount={(count: number) => setTasksCount(count)}
