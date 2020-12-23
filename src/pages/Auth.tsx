@@ -4,8 +4,8 @@ import { Button, Center, Image, Text, VStack } from '@chakra-ui/react';
 
 import { DropboxAuth } from 'dropbox';
 
-import { Header } from '../Header';
-import { Main } from '../Main';
+import { Header } from './../components/Header';
+import { Main } from './../components/Main';
 
 import dropboxLogo from '../rsrcs/icons/dropbox.svg';
 

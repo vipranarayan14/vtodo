@@ -3,7 +3,7 @@ import { Button, Tooltip } from '@chakra-ui/react';
 
 import { useDropboxChooser } from 'use-dropbox-chooser';
 
-import dbxClient from './dbx';
+import dbxClient from '../utils/dbx';
 
 type Props = {
   apiKey: string;

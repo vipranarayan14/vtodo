@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import dbxClient from './dbx';
+import dbxClient from './../utils/dbx';
 
-import { TodoTxt } from './todotxt';
+import { TodoTxt } from './../lib/todotxt';
 
 import { Box, Spinner, VStack } from '@chakra-ui/react';
 

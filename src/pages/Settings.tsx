@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Button, Heading, Text, VStack } from '@chakra-ui/react';
 
-import { Header } from './../Header';
-import { Main } from './../Main';
-import { FileSelect } from '../FileSelect';
+import { Header } from './../components/Header';
+import { Main } from './../components/Main';
+import { FileSelect } from '../components/FileSelect';
 
-import utils from './../utils';
+import utils from '../utils';
 
 type Props = {
   apiKey: string;

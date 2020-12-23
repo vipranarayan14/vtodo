@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { Header } from './../Header';
-import { Main } from './../Main';
-import { Todos } from './../Todos';
+import { Header } from './../components/Header';
+import { Main } from './../components/Main';
+import { Todos } from './../components/Todos';
 
 type Props = {
   dbxAccessToken: string;

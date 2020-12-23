@@ -3,7 +3,7 @@ import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import utils from './utils';
-import theme from './theme';
+import theme from './utils/theme';
 import { Home } from './pages/Home';
 import { Auth } from './pages/Auth';
 import { Settings } from './pages/Settings';
