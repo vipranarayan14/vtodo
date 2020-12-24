@@ -49,7 +49,7 @@ declare namespace TodoTxt {
   const SORT_ASC = sortDirection.SORT_ASC;
   const SORT_DESC = sortDirection.SORT_DESC;
 
-  interface Todo extends TodoGetters {
+  interface Todo {
     id: () => string;
     lineNumber: () => number;
     isComplete: () => false;
@@ -88,6 +88,15 @@ declare namespace TodoTxt {
     collections: (includeCompleted: boolean) => collections;
   }
 
-  const parseFile = (blob: string) => Todos;
-  const create = () => Todos;
+  interface parseFile {
+    (blob: string): Todos;
+  }
+
+  const parseFile: parseFile;
+
+  interface create {
+    (): Todos;
+  }
+
+  const create: create;
 }
