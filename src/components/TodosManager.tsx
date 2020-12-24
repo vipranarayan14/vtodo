@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import dbxClient from '../utils/dbx';
+import { Spinner, useToast, Center } from '@chakra-ui/react';
 
 import { TodoTxt } from '../lib/todotxt';
 
-import { Spinner, useToast, Center } from '@chakra-ui/react';
+import dbxClient from '../utils/dbx';
+
 import { Todos } from './Todos';
+import { TodoAdd } from './TodoAdd';
 
 type Props = {
   dbxAccessToken: string;
@@ -49,9 +51,16 @@ export const TodosManager: React.FC<Props> = ({
     setFile(newFile);
 
     // updated `file` from state will not be available here
-    const todos = TodoTxt.parseFile(newFile.contents);
+    const newTodos = TodoTxt.parseFile(newFile.contents);
 
-    setTodos(todos);
+    setTodos(newTodos);
+  };
+
+  const addTodo = (todoString: string) => {
+    console.log(todoString);
+
+    todos.addItem(todoString);
+    updateTodos(todos);
   };
 
   useEffect(() => {
@@ -88,6 +97,9 @@ export const TodosManager: React.FC<Props> = ({
       <Spinner />
     </Center>
   ) : (
-    <Todos todos={todos} updateTodos={updateTodos} />
+    <>
+      <TodoAdd addTodo={addTodo} />
+      <Todos todos={todos} updateTodos={updateTodos} />
+    </>
   );
 };
