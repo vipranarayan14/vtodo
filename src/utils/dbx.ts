@@ -38,11 +38,11 @@ const updateFile = async (
 ) => {
   const dbx = new Dropbox({ accessToken });
 
-  const { path_display: path } = file.metadata;
+  const { path_display: path, rev } = file.metadata;
 
   const mode: any = {
     '.tag': 'update',
-    update: file.metadata.rev,
+    update: rev,
   };
 
   try {
