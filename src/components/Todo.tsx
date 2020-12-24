@@ -15,12 +15,14 @@ import { TodoTxt } from '../lib/todotxt';
 
 type Props = {
   todo: TodoTxt.Todo;
+  onChange: () => void;
 };
 
 /**
   Removes '@' and '+' prefixes
 **/
 const removePrefix = (tag: string): string => tag.slice(1);
+
 const getPriorityColor = (priority: string): string => {
   const priorityColors: { [key: string]: string } = {
     A: 'red.500',
@@ -31,7 +33,7 @@ const getPriorityColor = (priority: string): string => {
   return priorityColors[priority] || 'white';
 };
 
-export const Todo: React.FC<Props> = ({ todo }) => {
+export const Todo: React.FC<Props> = ({ todo, onChange }) => {
   const text: string = todo.textTokens().join(' ');
   const isComplete: boolean = todo.isComplete();
   const contexts: string[] = todo.contexts();
@@ -46,6 +48,7 @@ export const Todo: React.FC<Props> = ({ todo }) => {
     } else {
       todo.uncompleteTask();
     }
+    onChange();
   };
 
   return (
@@ -54,17 +57,15 @@ export const Todo: React.FC<Props> = ({ todo }) => {
       shadow="base"
       bg="white"
       rounded="md"
+      borderLeft="5px solid"
       borderLeftColor={getPriorityColor(priority)}
-      borderLeftWidth="5px"
-      borderLeftStyle="solid"
     >
       <HStack spacing="3" align="start">
         <Checkbox
           size="lg"
-          defaultIsChecked={isComplete}
           mt="2.5px"
+          defaultIsChecked={isComplete}
           onChange={handleCheck}
-          isDisabled
         ></Checkbox>
         <VStack align="start">
           <Box>{text}</Box>
