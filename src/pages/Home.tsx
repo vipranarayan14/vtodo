@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Header } from './../components/Header';
 import { Main } from './../components/Main';
-import { TodosManager } from './../components/Todos';
+import { TodosManager } from '../components/TodosManager';
 
 type Props = {
   dbxAccessToken: string;
