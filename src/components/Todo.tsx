@@ -1,27 +1,15 @@
 import React from 'react';
 
-import {
-  Box,
-  Checkbox,
-  HStack,
-  Tag,
-  TagLabel,
-  TagLeftIcon,
-  VStack,
-} from '@chakra-ui/react';
-import { AddIcon, AtSignIcon } from '@chakra-ui/icons';
+import { Box, Checkbox, HStack, VStack } from '@chakra-ui/react';
 
 import { TodoTxt } from '../lib/todotxt';
+
+import { Collections } from './Collections';
 
 type Props = {
   todo: TodoTxt.Todo;
   onChange: () => void;
 };
-
-/**
-  Removes '@' and '+' prefixes
-**/
-const removePrefix = (tag: string): string => tag.slice(1);
 
 const getPriorityColor = (priority: string): string => {
   const priorityColors: { [key: string]: string } = {
@@ -38,8 +26,7 @@ export const Todo: React.FC<Props> = ({ todo, onChange }) => {
   const isComplete: boolean = todo.isComplete();
   const contexts: string[] = todo.contexts();
   const projects: string[] = todo.projects();
-  const hasContexts: boolean = !!contexts.length;
-  const hasProjects: boolean = !!projects.length;
+
   const priority = todo.priority();
 
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,24 +56,7 @@ export const Todo: React.FC<Props> = ({ todo, onChange }) => {
         ></Checkbox>
         <VStack align="start">
           <Box>{text}</Box>
-          {(hasContexts || hasProjects) && (
-            <HStack>
-              {hasContexts &&
-                contexts.map((context, id) => (
-                  <Tag colorScheme="blue" key={context + id}>
-                    <TagLeftIcon as={AtSignIcon} boxSize="12px"></TagLeftIcon>
-                    <TagLabel>{removePrefix(context)}</TagLabel>
-                  </Tag>
-                ))}
-              {hasProjects &&
-                projects.map((project, id) => (
-                  <Tag colorScheme="orange" key={project + id}>
-                    <TagLeftIcon as={AddIcon} boxSize="12px"></TagLeftIcon>
-                    <TagLabel>{removePrefix(project)}</TagLabel>
-                  </Tag>
-                ))}
-            </HStack>
-          )}
+          <Collections contexts={contexts} projects={projects} />
         </VStack>
       </HStack>
     </Box>
