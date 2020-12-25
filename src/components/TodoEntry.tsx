@@ -78,28 +78,28 @@ const Footer: React.FC = () => (
       size="lg"
       variant="transparent"
     />
-    {/* <Spacer /> */}
+
     <IconButton
       aria-label="Add project"
       icon={<AiOutlineTag />}
       size="lg"
       variant="transparent"
     />
-    {/* <Spacer /> */}
+
     <IconButton
       aria-label="Add context"
       icon={<FiAtSign />}
       size="lg"
       variant="transparent"
     />
-    {/* <Spacer /> */}
+
     <IconButton
       aria-label="Add due date"
       icon={<AiOutlineClockCircle />}
       size="lg"
       variant="transparent"
     />
-    {/* <Spacer /> */}
+
     <IconButton
       aria-label="Add threshold date"
       icon={<AiOutlineCalendar />}
