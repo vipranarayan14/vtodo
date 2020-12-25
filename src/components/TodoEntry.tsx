@@ -109,7 +109,7 @@ const Footer: React.FC = () => (
   </>
 );
 
-export const TodoAdd: React.FC<Props> = ({ addTodo }) => {
+export const TodoEntry: React.FC<Props> = ({ addTodo }) => {
   const todoStringInitialState = '';
 
   const [todoString, setTodoString] = useState(todoStringInitialState);

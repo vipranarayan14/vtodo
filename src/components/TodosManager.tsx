@@ -7,7 +7,7 @@ import { TodoTxt } from '../lib/todotxt';
 import dbxClient from '../utils/dbx';
 
 import { Todos } from './Todos';
-import { TodoAdd } from './TodoAdd';
+import { TodoEntry } from './TodoEntry';
 
 type Props = {
   dbxAccessToken: string;
@@ -98,7 +98,7 @@ export const TodosManager: React.FC<Props> = ({
     </Center>
   ) : (
     <>
-      <TodoAdd addTodo={addTodo} />
+      <TodoEntry addTodo={addTodo} />
       <Todos todos={todos} updateTodos={updateTodos} />
     </>
   );
