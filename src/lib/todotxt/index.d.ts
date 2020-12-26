@@ -101,4 +101,10 @@ declare namespace TodoTxt {
   }
 
   const create: create;
+
+  interface parseLine {
+    (line: string): Todo;
+  }
+
+  const parseLine: parseLine;
 }
