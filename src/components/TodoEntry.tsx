@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useBreakpointValue, useDisclosure } from '@chakra-ui/react';
 
@@ -6,17 +6,22 @@ import { TodoEntryForLargeScreen } from './TodoEntryForLargeScreen';
 import { TodoEntryForSmallScreen } from './TodoEntryForSmallScreen';
 
 type Props = {
-  addTodo: (todoString: string) => void;
+  addTodo: (todoText: string) => void;
 };
 
 export const TodoEntry: React.FC<Props> = ({ addTodo }) => {
+  const todoTextInitialState = '';
+
+  const [todoText, setTodoText] = useState(todoTextInitialState);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const isScreenSizeLarge = useBreakpointValue({ lg: true }); // breakpoint: lg
 
-  const onEntry = (todoString: string) => {
-    addTodo(todoString);
+  const onAdd = () => {
+    addTodo(todoText);
     onClose();
+    setTodoText(todoTextInitialState);
   };
 
   if (isScreenSizeLarge) {
