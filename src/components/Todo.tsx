@@ -6,19 +6,11 @@ import { TodoTxt } from '../lib/todotxt';
 
 import { Collections } from './Collections';
 
+import { getPriorityColor } from '../utils/getPriorityColor';
+
 type Props = {
   todo: TodoTxt.Todo;
   onChange: () => void;
-};
-
-const getPriorityColor = (priority: string): string => {
-  const priorityColors: { [key: string]: string } = {
-    A: 'red.500',
-    B: 'orange.400',
-    C: 'blue.500',
-    D: 'green.500',
-  };
-  return priorityColors[priority] || 'white';
 };
 
 export const Todo: React.FC<Props> = ({ todo, onChange }) => {
@@ -45,7 +37,7 @@ export const Todo: React.FC<Props> = ({ todo, onChange }) => {
       bg="white"
       rounded="md"
       borderLeft="5px solid"
-      borderLeftColor={getPriorityColor(priority)}
+      borderLeftColor={getPriorityColor(priority).light}
     >
       <HStack spacing="3" align="start">
         <Checkbox
