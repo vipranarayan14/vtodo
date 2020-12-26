@@ -25,7 +25,8 @@ export const PriorityButton: React.FC<Props> = ({
         isDisabled={isDisabled}
         onClick={onOpen}
         size="lg"
-        variant="transparent"
+        variant="ghost"
+        mx="1"
       />
       <PriorityModal
         isOpen={isOpen}
