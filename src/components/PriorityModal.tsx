@@ -59,7 +59,7 @@ export const PriorityModal: React.FC<Props> = ({
         <ModalHeader shadow="md">Select Priority</ModalHeader>
 
         <ModalBody>
-          <Grid templateColumns="repeat(4, 1fr)" gap={2} mt="2" mb="4">
+          <Grid templateColumns="repeat(4, 1fr)" gap={4} mt="2" mb="4">
             <GridItem colSpan={4}>
               <Button
                 onClick={() => handleClick('')}
@@ -73,8 +73,9 @@ export const PriorityModal: React.FC<Props> = ({
 
             {quadrantPriorities.map((priority) => {
               const priorityColor = getPriorityColor(priority.symbol);
+
               return (
-                <GridItem colSpan={4}>
+                <GridItem colSpan={4} key={priority.symbol}>
                   <Button
                     onClick={() => handleClick(priority.symbol)}
                     width="100%"
@@ -102,7 +103,9 @@ export const PriorityModal: React.FC<Props> = ({
             </GridItem>
 
             {alphabetsGtoZ.map((alphabet: string) => (
-              <Button onClick={() => handleClick(alphabet)}>{alphabet}</Button>
+              <Button onClick={() => handleClick(alphabet)} key={alphabet}>
+                {alphabet}
+              </Button>
             ))}
           </Grid>
         </ModalBody>
