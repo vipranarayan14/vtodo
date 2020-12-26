@@ -18,7 +18,7 @@ export const Collection: React.FC<CollectionProps> = ({
   colorScheme,
   icon,
 }) => (
-  <Tag colorScheme={colorScheme}>
+  <Tag colorScheme={colorScheme} mb="1">
     <TagLeftIcon as={icon} boxSize="12px"></TagLeftIcon>
     <TagLabel>{removePrefix(label)}</TagLabel>
   </Tag>

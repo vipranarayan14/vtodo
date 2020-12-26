@@ -22,7 +22,7 @@ export const Collections: React.FC<CollectionsProps> = ({
   }
 
   return (
-    <HStack>
+    <HStack wrap="wrap">
       {hasContexts &&
         contexts.map((context, id) => (
           <Collection
