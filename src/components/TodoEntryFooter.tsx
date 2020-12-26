@@ -13,19 +13,38 @@ import { FiAtSign } from 'react-icons/fi';
 import { TodoTxt } from '../lib/todotxt';
 
 import { PriorityButton } from './PriorityButton';
+import { CollectionsButton } from './CollectionsButton';
 
 type Props = {
   todoText: string;
   setTodoText: ($todoText: string) => void;
+  collections: {
+    contexts: string[];
+    projects: string[];
+  };
+  isDisabled: boolean;
 };
 
-export const TodoEntryFooter: React.FC<Props> = ({ todoText, setTodoText }) => {
-  const isDisabled = !todoText;
+export const TodoEntryFooter: React.FC<Props> = ({
+  todoText,
+  setTodoText,
+  collections,
+  isDisabled,
+}) => {
+  const todo = TodoTxt.parseLine(todoText);
+
+  const unusedProjects = collections.projects.filter(
+    (project) => !todo?.projects().includes(project)
+  );
+
+  const unusedContexts = collections.contexts.filter(
+    (context) => !todo?.contexts().includes(context)
+  );
+
+  const updateTodoText = (todo: TodoTxt.Todo) => setTodoText(todo.render());
 
   const setPriority = (priority: string) => {
     if (!todoText) return;
-
-    const todo = TodoTxt.parseLine(todoText);
 
     if (priority) {
       todo.setPriority(priority);
@@ -33,41 +52,63 @@ export const TodoEntryFooter: React.FC<Props> = ({ todoText, setTodoText }) => {
       todo.removePriority();
     }
 
-    const newTodoText = todo.render();
+    updateTodoText(todo);
+  };
 
-    setTodoText(newTodoText);
+  const addProject = (project: string) => {
+    if (!todoText) return;
+
+    todo.addProject(project);
+
+    updateTodoText(todo);
+  };
+
+  const addContext = (context: string) => {
+    if (!todoText) return;
+
+    todo.addContext(context);
+
+    updateTodoText(todo);
   };
 
   return (
     <>
       <PriorityButton isDisabled={isDisabled} setPriority={setPriority} />
 
-      <IconButton
-        aria-label="Add project"
+      <CollectionsButton
+        variant="Project"
         icon={<AiOutlineTag />}
-        size="lg"
-        variant="transparent"
+        isDisabled={isDisabled}
+        collections={unusedProjects}
+        addCollection={addProject}
       />
 
-      <IconButton
-        aria-label="Add context"
+      <CollectionsButton
+        variant="Context"
         icon={<FiAtSign />}
-        size="lg"
-        variant="transparent"
+        isDisabled={isDisabled}
+        collections={unusedContexts}
+        addCollection={addContext}
       />
+
+      {/* <IconButton
+        aria-label="Add context"
+        size="lg"
+        variant="ghost"
+      /> */}
 
       <IconButton
         aria-label="Add due date"
         icon={<AiOutlineClockCircle />}
         size="lg"
-        variant="transparent"
+        variant="ghost"
       />
 
       <IconButton
         aria-label="Add threshold date"
         icon={<AiOutlineCalendar />}
         size="lg"
-        variant="transparent"
+        variant="ghost"
       />
     </>
   );

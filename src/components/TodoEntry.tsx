@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { useBreakpointValue, useDisclosure } from '@chakra-ui/react';
 
+import { TodoTxt } from '../lib/todotxt';
+
 import { TodoEntryForLargeScreen } from './TodoEntryForLargeScreen';
 import { TodoEntryForSmallScreen } from './TodoEntryForSmallScreen';
 import { TodoEntryFooter } from './TodoEntryFooter';
@@ -9,9 +11,13 @@ import { TodoEntryBody } from './TodoEntryBody';
 
 type Props = {
   addTodo: (todoText: string) => void;
+  collections: {
+    contexts: string[];
+    projects: string[];
+  };
 };
 
-export const TodoEntry: React.FC<Props> = ({ addTodo }) => {
+export const TodoEntry: React.FC<Props> = ({ addTodo, collections }) => {
   const todoTextInitialState = '';
 
   const [todoText, setTodoText] = useState(todoTextInitialState);
@@ -19,6 +25,9 @@ export const TodoEntry: React.FC<Props> = ({ addTodo }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const isScreenSizeLarge = useBreakpointValue({ lg: true }); // breakpoint: lg
+
+  const isTodoTextEmpty: boolean = !!TodoTxt.parseLine(todoText)?.textTokens()
+    .length;
 
   const onAdd = () => {
     addTodo(todoText);
@@ -30,6 +39,7 @@ export const TodoEntry: React.FC<Props> = ({ addTodo }) => {
     <TodoEntryBody
       todoText={todoText}
       setTodoText={($todoText: string) => setTodoText($todoText)}
+      isAddButtonDisabled={!isTodoTextEmpty}
       onAdd={onAdd}
     />
   );
@@ -37,6 +47,8 @@ export const TodoEntry: React.FC<Props> = ({ addTodo }) => {
     <TodoEntryFooter
       todoText={todoText}
       setTodoText={($todoText: string) => setTodoText($todoText)}
+      collections={collections}
+      isDisabled={!isTodoTextEmpty}
     />
   );
 

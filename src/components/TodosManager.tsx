@@ -98,7 +98,7 @@ export const TodosManager: React.FC<Props> = ({
     </Center>
   ) : (
     <>
-      <TodoEntry addTodo={addTodo} />
+      <TodoEntry addTodo={addTodo} collections={todos.collections(true)} />
       <Todos todos={todos} updateTodos={updateTodos} />
     </>
   );
