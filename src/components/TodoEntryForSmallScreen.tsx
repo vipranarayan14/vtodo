@@ -11,21 +11,20 @@ import {
 
 import { AddIcon } from '@chakra-ui/icons';
 
-import { TodoEntryBody } from './TodoEntryBody';
-import { TodoEntryFooter } from './TodoEntryFooter';
-
 type Props = {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-  onEntry: (todoString: string) => void;
+  Body: React.ReactElement;
+  Footer: React.ReactElement;
 };
 
 export const TodoEntryForSmallScreen: React.FC<Props> = ({
   isOpen,
   onOpen,
   onClose,
-  onEntry,
+  Body,
+  Footer,
 }) => (
   <>
     <IconButton
@@ -44,15 +43,13 @@ export const TodoEntryForSmallScreen: React.FC<Props> = ({
     <Drawer isOpen={isOpen} onClose={onClose} placement="bottom">
       <DrawerOverlay />
       <DrawerContent borderTopRadius="10px">
-        <DrawerBody p="1">
-          <TodoEntryBody onEntry={onEntry} />
-        </DrawerBody>
+        <DrawerBody p="1">{Body}</DrawerBody>
         <DrawerFooter
           borderTopWidth="1px"
           py="1"
           justifyContent="space-between"
         >
-          <TodoEntryFooter />
+          {Footer}
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

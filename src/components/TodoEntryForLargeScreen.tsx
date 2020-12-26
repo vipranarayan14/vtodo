@@ -1,38 +1,38 @@
 import React from 'react';
 
-import { Box, Flex, Spacer, Button } from '@chakra-ui/react';
+import { Box, Flex, Spacer, Button, Center } from '@chakra-ui/react';
 
-import { TodoEntryBody } from './TodoEntryBody';
-import { TodoEntryFooter } from './TodoEntryFooter';
 import { TodoEntryPlaceholder } from './TodoEntryPlaceholder';
 
 type Props = {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-  onEntry: (todoString: string) => void;
+  Body: React.ReactElement;
+  Footer: React.ReactElement;
 };
 
 export const TodoEntryForLargeScreen: React.FC<Props> = ({
   isOpen,
   onOpen,
   onClose,
-  onEntry,
+  Body,
+  Footer,
 }) => (
   <Box bg="white" borderRadius="10px" p="1" shadow="md" mt="2" mb="5">
     {!isOpen ? (
       <TodoEntryPlaceholder onOpen={onOpen} />
     ) : (
       <>
-        <Box>
-          <TodoEntryBody onEntry={onEntry} />
-        </Box>
+        <Box>{Body}</Box>
         <Flex borderTopWidth="1px" mt="1" py="1" justifyContent="start">
-          <TodoEntryFooter />
+          {Footer}
           <Spacer />
-          <Button onClick={onClose} size="lg">
-            Close
-          </Button>
+          <Center>
+            <Button onClick={onClose} fontWeight="normal" mr="3">
+              Close
+            </Button>
+          </Center>
         </Flex>
       </>
     )}

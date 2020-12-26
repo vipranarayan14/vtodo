@@ -4,6 +4,8 @@ import { useBreakpointValue, useDisclosure } from '@chakra-ui/react';
 
 import { TodoEntryForLargeScreen } from './TodoEntryForLargeScreen';
 import { TodoEntryForSmallScreen } from './TodoEntryForSmallScreen';
+import { TodoEntryFooter } from './TodoEntryFooter';
+import { TodoEntryBody } from './TodoEntryBody';
 
 type Props = {
   addTodo: (todoText: string) => void;
@@ -24,13 +26,28 @@ export const TodoEntry: React.FC<Props> = ({ addTodo }) => {
     setTodoText(todoTextInitialState);
   };
 
+  const Body = (
+    <TodoEntryBody
+      todoText={todoText}
+      setTodoText={($todoText: string) => setTodoText($todoText)}
+      onAdd={onAdd}
+    />
+  );
+  const Footer = (
+    <TodoEntryFooter
+      todoText={todoText}
+      setTodoText={($todoText: string) => setTodoText($todoText)}
+    />
+  );
+
   if (isScreenSizeLarge) {
     return (
       <TodoEntryForLargeScreen
         isOpen={isOpen}
         onOpen={onOpen}
         onClose={onClose}
-        onEntry={onEntry}
+        Body={Body}
+        Footer={Footer}
       />
     );
   }
@@ -40,7 +57,8 @@ export const TodoEntry: React.FC<Props> = ({ addTodo }) => {
       isOpen={isOpen}
       onOpen={onOpen}
       onClose={onClose}
-      onEntry={onEntry}
+      Body={Body}
+      Footer={Footer}
     />
   );
 };
