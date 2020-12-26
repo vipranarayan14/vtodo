@@ -62,6 +62,8 @@ declare namespace TodoTxt {
     textTokens: () => string[];
     completeTask: () => void;
     uncompleteTask: () => void;
+    setPriority: (priority: string) => void;
+    removePriority: () => void;
     setCreatedDate: (dt?: Date) => void;
     addContext: (ctxt: string) => void;
     removeContext: (ctxt: string) => void;

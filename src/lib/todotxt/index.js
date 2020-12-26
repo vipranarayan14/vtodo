@@ -407,6 +407,33 @@ export let TodoTxt = (function () {
       tokens.splice(0, numToDelete);
     };
 
+    /* Added by Prasanna Venkatesh <vipranarayan14@gmail.com>*/
+    output.setPriority = function (priority) {
+      const rePriorityChar = /^[A-Z]$/;
+
+      if (!priority || !rePriorityChar.test(priority)) return;
+
+      const shouldInsertAtIndex = output.priority() === null;
+
+      let targetIndex = 0;
+
+      if (output.completedDate()) targetIndex++;
+      if (output.isComplete()) targetIndex++;
+
+      tokens.splice(targetIndex, shouldInsertAtIndex ? 0 : 1, `(${priority})`);
+    };
+
+    output.removePriority = function () {
+      if (!output.priority()) return;
+
+      let targetIndex = 0;
+
+      if (output.completedDate()) targetIndex++;
+      if (output.isComplete()) targetIndex++;
+
+      tokens.splice(targetIndex, 1);
+    };
+
     output.setCreatedDate = function (dt) {
       if (!isDate(dt)) dt = new Date();
       dt = stripTime(dt);
