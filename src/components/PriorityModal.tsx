@@ -85,7 +85,7 @@ export const PriorityModal: React.FC<Props> = ({
                     _hover={{ bg: priorityColor.dark }}
                     _active={{ bg: priorityColor.darker }}
                   >
-                    {`${priority.symbol} ${priority.info}`}
+                    {`${priority.symbol} | ${priority.info}`}
                   </Button>
                 </GridItem>
               );
