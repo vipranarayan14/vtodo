@@ -7,12 +7,14 @@ import { AiOutlineSend } from 'react-icons/ai';
 type Props = {
   todoText: string;
   setTodoText: ($todoText: string) => void;
+  isAddButtonDisabled: boolean;
   onAdd: () => void;
 };
 
 export const TodoEntryBody: React.FC<Props> = ({
   todoText,
   setTodoText,
+  isAddButtonDisabled,
   onAdd,
 }) => (
   <>
@@ -32,10 +34,11 @@ export const TodoEntryBody: React.FC<Props> = ({
       <IconButton
         aria-label="Add new todo"
         icon={<AiOutlineSend />}
+        onClick={onAdd}
+        isDisabled={isAddButtonDisabled}
         size="lg"
         height="2.5rem"
         variant="transparent"
-        onClick={onAdd}
       />
     </HStack>
   </>
