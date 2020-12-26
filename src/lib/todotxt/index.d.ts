@@ -87,7 +87,7 @@ declare namespace TodoTxt {
     ) => string;
     removeItem: (item: Todo | string, allMatches: boolean) => void;
     addItem: (item: Todo | string) => Todo;
-    collections: (includeCompleted: boolean) => collections;
+    collections: (includeCompleted?: boolean) => collections;
   }
 
   interface parseFile {
