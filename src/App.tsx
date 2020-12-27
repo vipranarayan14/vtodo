@@ -3,10 +3,12 @@ import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import utils from './utils';
-import theme from './utils/theme';
 import { Home } from './pages/Home';
 import { Auth } from './pages/Auth';
 import { Settings } from './pages/Settings';
+
+import theme from './styles/theme';
+import './styles/fonts.css';
 
 const API_KEY = 'crpg0cmpv6ddpt8';
 
