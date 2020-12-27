@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { IconButton } from '@chakra-ui/react';
-
 import {
   AiOutlineTag,
   AiOutlineClockCircle,
@@ -12,8 +10,11 @@ import { FiAtSign } from 'react-icons/fi';
 
 import { TodoTxt } from '../lib/todotxt';
 
+import { stringToDate } from '../utils/stringToDate';
+
 import { PriorityButton } from './PriorityButton';
 import { CollectionsButton } from './CollectionsButton';
+import { CalendarButton } from './CalendarButton';
 
 type Props = {
   todoText: string;
@@ -73,6 +74,26 @@ export const TodoEntryFooter: React.FC<Props> = ({
     updateTodoText(todo);
   };
 
+  const getDate = (key: string) => () => {
+    const dateText = todo?.addons()[key];
+
+    if (!dateText) return new Date();
+
+    const date = stringToDate(dateText);
+
+    if (!date) return new Date();
+
+    return date;
+  };
+
+  const setDate = (key: string) => (newDueDate: Date) => {
+    if (!todoText) return;
+
+    todo.setAddOn(key, newDueDate);
+
+    updateTodoText(todo);
+  };
+
   return (
     <>
       <PriorityButton isDisabled={isDisabled} setPriority={setPriority} />
@@ -93,24 +114,20 @@ export const TodoEntryFooter: React.FC<Props> = ({
         addCollection={addContext}
       />
 
-      {/* <IconButton
-        aria-label="Add context"
-        size="lg"
-        variant="ghost"
-      /> */}
-
-      <IconButton
-        aria-label="Add due date"
+      <CalendarButton
+        variant="Due Date"
         icon={<AiOutlineClockCircle />}
-        size="lg"
-        variant="ghost"
+        isDisabled={isDisabled}
+        getDate={getDate('due')}
+        setDate={setDate('due')}
       />
 
-      <IconButton
-        aria-label="Add threshold date"
+      <CalendarButton
+        variant="Threshold Date"
         icon={<AiOutlineCalendar />}
-        size="lg"
-        variant="ghost"
+        isDisabled={isDisabled}
+        getDate={getDate('t')}
+        setDate={setDate('t')}
       />
     </>
   );
