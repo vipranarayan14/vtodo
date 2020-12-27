@@ -19,7 +19,7 @@ type Props = {
   variant: string;
   isOpen: boolean;
   onClose: () => void;
-  collections: string[];
+  getCollections: () => string[];
   addCollection: (collection: string) => void;
 };
 
@@ -27,7 +27,7 @@ export const CollectionsModal: React.FC<Props> = ({
   variant,
   isOpen,
   onClose,
-  collections,
+  getCollections,
   addCollection,
 }) => {
   const [newCollection, setNewCollection] = useState('');
@@ -46,7 +46,7 @@ export const CollectionsModal: React.FC<Props> = ({
 
         <ModalBody>
           <List>
-            {collections.map((collection) => (
+            {getCollections().map((collection) => (
               <ListItem my="1" key={collection}>
                 <Button
                   onClick={() => handleClick(collection)}

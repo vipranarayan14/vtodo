@@ -8,7 +8,7 @@ type Props = {
   variant: string;
   icon: React.ReactElement;
   isDisabled: boolean;
-  collections: string[];
+  getCollections: () => string[];
   addCollection: (collection: string) => void;
 };
 
@@ -16,7 +16,7 @@ export const CollectionsButton: React.FC<Props> = ({
   variant,
   icon,
   isDisabled,
-  collections,
+  getCollections,
   addCollection,
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,7 +36,7 @@ export const CollectionsButton: React.FC<Props> = ({
         variant={variant}
         isOpen={isOpen}
         onClose={onClose}
-        collections={collections}
+        getCollections={getCollections}
         addCollection={addCollection}
       />
     </>

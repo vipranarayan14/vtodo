@@ -33,14 +33,6 @@ export const TodoEntryFooter: React.FC<Props> = ({
 }) => {
   const todo = TodoTxt.parseLine(todoText);
 
-  const unusedProjects = collections.projects.filter(
-    (project) => !todo?.projects().includes(project)
-  );
-
-  const unusedContexts = collections.contexts.filter(
-    (context) => !todo?.contexts().includes(context)
-  );
-
   const updateTodoText = (todo: TodoTxt.Todo) => setTodoText(todo.render());
 
   const setPriority = (priority: string) => {
@@ -55,6 +47,11 @@ export const TodoEntryFooter: React.FC<Props> = ({
     updateTodoText(todo);
   };
 
+  const getUnusedProjects = () =>
+    collections.projects.filter(
+      (project) => !todo?.projects().includes(project)
+    );
+
   const addProject = (project: string) => {
     if (!todoText) return;
 
@@ -62,6 +59,11 @@ export const TodoEntryFooter: React.FC<Props> = ({
 
     updateTodoText(todo);
   };
+
+  const getUnusedContexts = () =>
+    collections.contexts.filter(
+      (context) => !todo?.contexts().includes(context)
+    );
 
   const addContext = (context: string) => {
     if (!todoText) return;
@@ -79,7 +81,7 @@ export const TodoEntryFooter: React.FC<Props> = ({
         variant="Project"
         icon={<AiOutlineTag />}
         isDisabled={isDisabled}
-        collections={unusedProjects}
+        getCollections={getUnusedProjects}
         addCollection={addProject}
       />
 
@@ -87,7 +89,7 @@ export const TodoEntryFooter: React.FC<Props> = ({
         variant="Context"
         icon={<FiAtSign />}
         isDisabled={isDisabled}
-        collections={unusedContexts}
+        getCollections={getUnusedContexts}
         addCollection={addContext}
       />
 
