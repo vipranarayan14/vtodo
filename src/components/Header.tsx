@@ -11,7 +11,7 @@ export const Header: React.FC<Props> = ({ heading, subHeading }) => (
   <Box
     as="header"
     bg="white"
-    color="green.500"
+    color="green.600"
     shadow="md"
     pos="sticky"
     top="0px"
