@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Checkbox, HStack, VStack } from '@chakra-ui/react';
+import { Box, Checkbox, HStack, Text } from '@chakra-ui/react';
 
 import { TodoTxt } from '../lib/todotxt';
 
@@ -46,10 +46,12 @@ export const Todo: React.FC<Props> = ({ todo, onChange }) => {
           defaultIsChecked={isComplete}
           onChange={handleCheck}
         ></Checkbox>
-        <VStack align="start">
-          <Box>{text}</Box>
+        <Box>
+          <Text as="span" mr="1">
+            {text}
+          </Text>
           <Collections contexts={contexts} projects={projects} />
-        </VStack>
+        </Box>
       </HStack>
     </Box>
   );

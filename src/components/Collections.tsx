@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { AddIcon, AtSignIcon } from '@chakra-ui/icons';
-import { HStack } from '@chakra-ui/react';
 
 import { Collection } from './Collection';
 
@@ -22,7 +21,7 @@ export const Collections: React.FC<CollectionsProps> = ({
   }
 
   return (
-    <HStack wrap="wrap">
+    <>
       {hasContexts &&
         contexts.map((context, id) => (
           <Collection
@@ -42,6 +41,6 @@ export const Collections: React.FC<CollectionsProps> = ({
             key={project + id}
           />
         ))}
-    </HStack>
+    </>
   );
 };

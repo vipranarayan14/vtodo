@@ -9,8 +9,8 @@ type CollectionProps = {
 };
 
 /**
-  Removes '@' and '+' prefixes
-**/
+ * Removes '@' and '+' prefixes
+ **/
 const removePrefix = (tag: string): string => tag.slice(1);
 
 export const Collection: React.FC<CollectionProps> = ({
@@ -18,7 +18,7 @@ export const Collection: React.FC<CollectionProps> = ({
   colorScheme,
   icon,
 }) => (
-  <Tag colorScheme={colorScheme} mb="1">
+  <Tag colorScheme={colorScheme} mr="1" mb="1">
     <TagLeftIcon as={icon} boxSize="12px"></TagLeftIcon>
     <TagLabel>{removePrefix(label)}</TagLabel>
   </Tag>
