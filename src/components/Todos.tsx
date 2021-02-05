@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Heading, VStack } from '@chakra-ui/react';
+import { Box, Heading, HStack, VStack } from '@chakra-ui/react';
 
 import { TodoTxt } from '../lib/todotxt';
 
@@ -69,8 +69,6 @@ export const Todos: React.FC<TodosProps> = ({ todos, updateTodos }) => {
     None: todosClassifiedByDueDate.unclassified,
   };
 
-  console.log(todosSorted);
-
   const onChange = () => {
     updateTodos($todos);
   };
@@ -79,9 +77,14 @@ export const Todos: React.FC<TodosProps> = ({ todos, updateTodos }) => {
     <>
       {Object.entries(todosSorted).map(([sectionTitle, todos]) => (
         <VStack align="stretch" mb="7">
-          <Heading as="h2" fontSize="l" mb="1">
-            {sectionTitle}
-          </Heading>
+          <HStack>
+            <Heading as="h2" fontSize="l" mb="1">
+              {sectionTitle}
+            </Heading>
+            <Box fontSize="xs" bg="gray.300" rounded="md" p="1px 5px">
+              {todos.length}
+            </Box>
+          </HStack>
           {todos.map((todo: TodoTxt.Todo) => (
             <Todo todo={todo} key={todo.id()} onChange={onChange} />
           ))}
