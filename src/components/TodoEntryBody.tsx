@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { HStack, Textarea, IconButton } from '@chakra-ui/react';
+import { HStack, Textarea, IconButton, Tooltip } from '@chakra-ui/react';
 
 import { AiOutlineSend } from 'react-icons/ai';
 
@@ -31,15 +31,17 @@ export const TodoEntryBody: React.FC<Props> = ({
         focusBorderColor="none"
         _placeholder={{ opacity: 1 }}
       />
-      <IconButton
-        aria-label="Add new todo"
-        icon={<AiOutlineSend />}
-        onClick={onAdd}
-        isDisabled={isAddButtonDisabled}
-        size="lg"
-        height="2.5rem"
-        variant="transparent"
-      />
+      <Tooltip label="Add todo">
+        <IconButton
+          aria-label="Add todo"
+          icon={<AiOutlineSend />}
+          onClick={onAdd}
+          isDisabled={isAddButtonDisabled}
+          size="lg"
+          height="2.5rem"
+          variant="transparent"
+        />
+      </Tooltip>
     </HStack>
   </>
 );

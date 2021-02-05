@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IconButton } from '@chakra-ui/react';
+import { IconButton, Tooltip } from '@chakra-ui/react';
 
 type Props = {
   label: string;
@@ -10,5 +10,13 @@ type Props = {
 };
 
 export const TodoEntryFooterButton: React.FC<Props> = ({ label, ...props }) => (
-  <IconButton {...props} aria-label={label} size="lg" variant="ghost" mx="1" />
+  <Tooltip label={label} hasArrow>
+    <IconButton
+      {...props}
+      aria-label={label}
+      size="lg"
+      variant="ghost"
+      mx="1"
+    />
+  </Tooltip>
 );
