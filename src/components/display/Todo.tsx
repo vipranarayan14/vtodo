@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Box, Checkbox, HStack, Text } from '@chakra-ui/react';
 
-import { TodoTxt } from '../lib/todotxt';
+import { TodoTxt } from '../../lib/todotxt';
 
 import { Collections } from './Collections';
 
-import { getPriorityColor } from '../utils/getPriorityColor';
+import { getPriorityColor } from '../../utils/getPriorityColor';
 
 type Props = {
   todo: TodoTxt.Todo;

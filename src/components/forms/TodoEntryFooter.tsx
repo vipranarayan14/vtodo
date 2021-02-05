@@ -8,9 +8,9 @@ import {
 
 import { FiAtSign } from 'react-icons/fi';
 
-import { TodoTxt } from '../lib/todotxt';
+import { TodoTxt } from '../../lib/todotxt';
 
-import { stringToDate } from '../utils/stringToDate';
+import { stringToDate } from '../../utils/stringToDate';
 
 import { PriorityButton } from './buttons/PriorityButton';
 import { CollectionsButton } from './buttons/CollectionsButton';

@@ -2,40 +2,40 @@ import React from 'react';
 
 import { useDisclosure } from '@chakra-ui/react';
 
-import { CalendarModal } from '../CalendarModal';
+import { CollectionsModal } from '../../overlays/modals/CollectionsModal';
 import { TodoEntryFooterButton } from './TodoEntryFooterButton';
 
 type Props = {
   variant: string;
   icon: React.ReactElement;
   isDisabled: boolean;
-  getDate: () => Date;
-  setDate: (date: Date) => void;
+  getCollections: () => string[];
+  addCollection: (collection: string) => void;
 };
 
-export const CalendarButton: React.FC<Props> = ({
+export const CollectionsButton: React.FC<Props> = ({
   variant,
   icon,
   isDisabled,
-  getDate,
-  setDate,
+  getCollections,
+  addCollection,
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
       <TodoEntryFooterButton
-        label={`Select ${variant.toLowerCase()}`}
+        label={`Add ${variant.toLowerCase()}`}
         icon={icon}
         isDisabled={isDisabled}
         onClick={onOpen}
       />
-      <CalendarModal
+      <CollectionsModal
         variant={variant}
         isOpen={isOpen}
         onClose={onClose}
-        getDate={getDate}
-        setDate={setDate}
+        getCollections={getCollections}
+        addCollection={addCollection}
       />
     </>
   );

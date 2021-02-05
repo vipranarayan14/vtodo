@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { Header } from './../components/Header';
-import { Main } from './../components/Main';
-import { TodosManager } from '../components/TodosManager';
+import { Header } from '../components/display/Header';
+import { Main } from '../components/display/wrapper/Main';
+import { TodosManager } from '../components/logic/TodosManager';
 
 type Props = {
   dbxAccessToken: string;

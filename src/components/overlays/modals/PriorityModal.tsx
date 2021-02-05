@@ -13,7 +13,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 
-import { getPriorityColor } from '../utils/getPriorityColor';
+import { getPriorityColor } from '../../../utils/getPriorityColor';
 import { AiFillFlag, AiOutlineFlag } from 'react-icons/ai';
 
 type Props = {

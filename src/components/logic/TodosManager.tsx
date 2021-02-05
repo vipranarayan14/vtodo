@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 import { Spinner, useToast, Center } from '@chakra-ui/react';
 
-import { TodoTxt } from '../lib/todotxt';
+import { TodoTxt } from '../../lib/todotxt';
 
-import dbxClient from '../utils/dbx';
+import dbxClient from '../../utils/dbx';
 
-import { Todos } from './Todos';
-import { TodoEntry } from './TodoEntry';
+import { Todos } from '../display/Todos';
+import { TodoEntry } from '../forms/TodoEntry';
 
 type Props = {
   dbxAccessToken: string;

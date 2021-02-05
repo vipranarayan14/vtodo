@@ -10,7 +10,7 @@ import {
   ModalOverlay,
 } from '@chakra-ui/react';
 
-import '../styles/Calendar.css';
+import '../../../styles/Calendar.css';
 
 type Props = {
   variant: string;

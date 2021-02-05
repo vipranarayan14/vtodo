@@ -2,34 +2,40 @@ import React from 'react';
 
 import { useDisclosure } from '@chakra-ui/react';
 
-import { AiOutlineFlag } from 'react-icons/ai';
-
-import { PriorityModal } from '../PriorityModal';
+import { CalendarModal } from '../../overlays/modals/CalendarModal';
 import { TodoEntryFooterButton } from './TodoEntryFooterButton';
 
 type Props = {
+  variant: string;
+  icon: React.ReactElement;
   isDisabled: boolean;
-  setPriority: (priority: string) => void;
+  getDate: () => Date;
+  setDate: (date: Date) => void;
 };
 
-export const PriorityButton: React.FC<Props> = ({
+export const CalendarButton: React.FC<Props> = ({
+  variant,
+  icon,
   isDisabled,
-  setPriority,
+  getDate,
+  setDate,
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
       <TodoEntryFooterButton
-        label="Set priority"
-        icon={<AiOutlineFlag />}
+        label={`Select ${variant.toLowerCase()}`}
+        icon={icon}
         isDisabled={isDisabled}
         onClick={onOpen}
       />
-      <PriorityModal
+      <CalendarModal
+        variant={variant}
         isOpen={isOpen}
         onClose={onClose}
-        setPriority={setPriority}
+        getDate={getDate}
+        setDate={setDate}
       />
     </>
   );

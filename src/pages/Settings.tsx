@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Box, Button, Heading, Text, VStack } from '@chakra-ui/react';
 
-import { Header } from './../components/Header';
-import { Main } from './../components/Main';
-import { FileSelect } from '../components/FileSelect';
+import { Header } from '../components/display/Header';
+import { Main } from '../components/display/wrapper/Main';
+import { FileSelect } from '../components/forms/FileSelect';
 
 import utils from '../utils';
 

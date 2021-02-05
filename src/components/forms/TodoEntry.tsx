@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useBreakpointValue, useDisclosure } from '@chakra-ui/react';
 
-import { TodoTxt } from '../lib/todotxt';
+import { TodoTxt } from '../../lib/todotxt';
 
 import { TodoEntryForLargeScreen } from './TodoEntryForLargeScreen';
 import { TodoEntryForSmallScreen } from './TodoEntryForSmallScreen';

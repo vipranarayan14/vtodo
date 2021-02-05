@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Box, Heading, HStack, VStack } from '@chakra-ui/react';
 
-import { TodoTxt } from '../lib/todotxt';
+import { TodoTxt } from '../../lib/todotxt';
 
 import { Todo } from './Todo';
-import { getRelativeDate } from '../utils/getRelativeDate';
+import { getRelativeDate } from '../../utils/getRelativeDate';
 
 type TodosProps = {
   todos: TodoTxt.Todos;
