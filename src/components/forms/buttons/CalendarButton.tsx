@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { IconType } from 'react-icons';
+
 import { useDisclosure } from '@chakra-ui/react';
 
 import { CalendarModal } from '../../overlays/modals/CalendarModal';
@@ -7,7 +9,7 @@ import { TodoEntryFooterButton } from './TodoEntryFooterButton';
 
 type Props = {
   variant: string;
-  icon: React.ReactElement;
+  Icon: IconType;
   isDisabled: boolean;
   getDate: () => Date;
   setDate: (date: Date) => void;
@@ -15,7 +17,7 @@ type Props = {
 
 export const CalendarButton: React.FC<Props> = ({
   variant,
-  icon,
+  Icon,
   isDisabled,
   getDate,
   setDate,
@@ -26,11 +28,12 @@ export const CalendarButton: React.FC<Props> = ({
     <>
       <TodoEntryFooterButton
         label={`Select ${variant.toLowerCase()}`}
-        icon={icon}
+        icon={<Icon />}
         isDisabled={isDisabled}
         onClick={onOpen}
       />
       <CalendarModal
+        icon={Icon}
         variant={variant}
         isOpen={isOpen}
         onClose={onClose}

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { IconType } from 'react-icons';
+
 import { useDisclosure } from '@chakra-ui/react';
 
 import { CollectionsModal } from '../../overlays/modals/CollectionsModal';
@@ -7,7 +9,7 @@ import { TodoEntryFooterButton } from './TodoEntryFooterButton';
 
 type Props = {
   variant: string;
-  icon: React.ReactElement;
+  Icon: IconType;
   isDisabled: boolean;
   getCollections: () => string[];
   addCollection: (collection: string) => void;
@@ -15,7 +17,7 @@ type Props = {
 
 export const CollectionsButton: React.FC<Props> = ({
   variant,
-  icon,
+  Icon,
   isDisabled,
   getCollections,
   addCollection,
@@ -26,12 +28,13 @@ export const CollectionsButton: React.FC<Props> = ({
     <>
       <TodoEntryFooterButton
         label={`Add ${variant.toLowerCase()}`}
-        icon={icon}
+        icon={<Icon />}
         isDisabled={isDisabled}
         onClick={onOpen}
       />
       <CollectionsModal
         variant={variant}
+        icon={Icon}
         isOpen={isOpen}
         onClose={onClose}
         getCollections={getCollections}

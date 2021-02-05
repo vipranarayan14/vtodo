@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 
+import { IconType } from 'react-icons';
+
 import {
   Button,
   HStack,
+  Icon,
   IconButton,
   Input,
   List,
@@ -13,10 +16,12 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/react';
+
 import { AddIcon } from '@chakra-ui/icons';
 
 type Props = {
   variant: string;
+  icon: IconType;
   isOpen: boolean;
   onClose: () => void;
   getCollections: () => string[];
@@ -25,6 +30,7 @@ type Props = {
 
 export const CollectionsModal: React.FC<Props> = ({
   variant,
+  icon,
   isOpen,
   onClose,
   getCollections,
@@ -42,7 +48,9 @@ export const CollectionsModal: React.FC<Props> = ({
     <Modal isOpen={isOpen} onClose={onClose} isCentered scrollBehavior="inside">
       <ModalOverlay />
       <ModalContent m="2">
-        <ModalHeader shadow="md">Select a {variant.toLowerCase()}</ModalHeader>
+        <ModalHeader shadow="md">
+          <Icon as={icon} /> Select a {variant.toLowerCase()}
+        </ModalHeader>
 
         <ModalBody>
           <List>

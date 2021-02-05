@@ -99,16 +99,16 @@ export const TodoEntryFooter: React.FC<Props> = ({
       <PriorityButton isDisabled={isDisabled} setPriority={setPriority} />
 
       <CollectionsButton
+        Icon={AiOutlineTag}
         variant="Project"
-        icon={<AiOutlineTag />}
         isDisabled={isDisabled}
         getCollections={getUnusedProjects}
         addCollection={addProject}
       />
 
       <CollectionsButton
+        Icon={FiAtSign}
         variant="Context"
-        icon={<FiAtSign />}
         isDisabled={isDisabled}
         getCollections={getUnusedContexts}
         addCollection={addContext}
@@ -116,7 +116,7 @@ export const TodoEntryFooter: React.FC<Props> = ({
 
       <CalendarButton
         variant="Due Date"
-        icon={<AiOutlineClockCircle />}
+        Icon={AiOutlineClockCircle}
         isDisabled={isDisabled}
         getDate={getDate('due')}
         setDate={setDate('due')}
@@ -124,7 +124,7 @@ export const TodoEntryFooter: React.FC<Props> = ({
 
       <CalendarButton
         variant="Threshold Date"
-        icon={<AiOutlineCalendar />}
+        Icon={AiOutlineCalendar}
         isDisabled={isDisabled}
         getDate={getDate('t')}
         setDate={setDate('t')}

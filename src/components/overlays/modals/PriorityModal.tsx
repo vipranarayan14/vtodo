@@ -16,12 +16,6 @@ import {
 import { getPriorityColor } from '../../../utils/getPriorityColor';
 import { AiFillFlag, AiOutlineFlag } from 'react-icons/ai';
 
-type Props = {
-  isOpen: boolean;
-  onClose: () => void;
-  setPriority: (priority: string) => void;
-};
-
 const quadrantPriorities = [
   {
     symbol: 'A',
@@ -45,6 +39,12 @@ const alphabetsGtoZ: string[] = Array.from({ length: 20 }, (_, i) =>
   String.fromCharCode(71 + i)
 );
 
+type Props = {
+  isOpen: boolean;
+  onClose: () => void;
+  setPriority: (priority: string) => void;
+};
+
 export const PriorityModal: React.FC<Props> = ({
   isOpen,
   onClose,
@@ -59,7 +59,9 @@ export const PriorityModal: React.FC<Props> = ({
     <Modal isOpen={isOpen} onClose={onClose} isCentered scrollBehavior="inside">
       <ModalOverlay />
       <ModalContent m="2">
-        <ModalHeader shadow="md">Select Priority</ModalHeader>
+        <ModalHeader shadow="md">
+          <Icon as={AiOutlineFlag} /> Set Priority
+        </ModalHeader>
 
         <ModalBody>
           <Grid templateColumns="repeat(4, 1fr)" gap={4} mt="2" mb="4">

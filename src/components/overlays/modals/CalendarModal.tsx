@@ -2,7 +2,10 @@ import React from 'react';
 
 import Calendar from 'react-calendar';
 
+import { IconType } from 'react-icons';
+
 import {
+  Icon,
   Modal,
   ModalBody,
   ModalContent,
@@ -14,6 +17,7 @@ import '../../../styles/Calendar.css';
 
 type Props = {
   variant: string;
+  icon: IconType;
   isOpen: boolean;
   onClose: () => void;
   getDate: () => Date;
@@ -22,6 +26,7 @@ type Props = {
 
 export const CalendarModal: React.FC<Props> = ({
   variant,
+  icon,
   isOpen,
   onClose,
   getDate,
@@ -39,7 +44,9 @@ export const CalendarModal: React.FC<Props> = ({
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />
       <ModalContent m="2">
-        <ModalHeader shadow="md">Select {variant}</ModalHeader>
+        <ModalHeader shadow="md">
+          <Icon as={icon} /> Select {variant}
+        </ModalHeader>
 
         <ModalBody p="3">
           <Calendar
