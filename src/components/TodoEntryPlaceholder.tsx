@@ -20,12 +20,13 @@ export const TodoEntryPlaceholder: React.FC<Props> = ({ onOpen }) => (
       _placeholder={{ opacity: 1 }}
     />
     <IconButton
-      aria-label="Add new todo"
+      aria-label="Add todo"
       icon={<AiOutlineSend />}
+      isDisabled
       size="lg"
+      fontSize="1.5rem"
       height="2.5rem"
       variant="transparent"
-      isDisabled
     />
   </HStack>
 );

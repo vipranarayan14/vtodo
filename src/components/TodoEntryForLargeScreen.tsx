@@ -29,7 +29,7 @@ export const TodoEntryForLargeScreen: React.FC<Props> = ({
           {Footer}
           <Spacer />
           <Center>
-            <Button onClick={onClose} fontWeight="normal" mr="3">
+            <Button onClick={onClose} size="sm" fontWeight="normal" mr="3">
               Close
             </Button>
           </Center>

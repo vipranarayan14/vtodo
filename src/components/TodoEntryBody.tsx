@@ -18,7 +18,7 @@ export const TodoEntryBody: React.FC<Props> = ({
   onAdd,
 }) => (
   <>
-    <HStack spacing="1" alignItems={{ base: 'center', lg: 'start' }}>
+    <HStack spacing="1" alignItems="center">
       <Textarea
         placeholder="Add a task..."
         value={todoText}
@@ -38,6 +38,7 @@ export const TodoEntryBody: React.FC<Props> = ({
           onClick={onAdd}
           isDisabled={isAddButtonDisabled}
           size="lg"
+          fontSize="1.5rem"
           height="2.5rem"
           variant="transparent"
         />
