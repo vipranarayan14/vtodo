@@ -12,9 +12,9 @@ import { TodoTxt } from '../lib/todotxt';
 
 import { stringToDate } from '../utils/stringToDate';
 
-import { PriorityButton } from './PriorityButton';
-import { CollectionsButton } from './CollectionsButton';
-import { CalendarButton } from './CalendarButton';
+import { PriorityButton } from './buttons/PriorityButton';
+import { CollectionsButton } from './buttons/CollectionsButton';
+import { CalendarButton } from './buttons/CalendarButton';
 
 type Props = {
   todoText: string;

@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { useDisclosure, IconButton } from '@chakra-ui/react';
+import { useDisclosure } from '@chakra-ui/react';
 
 import { AiOutlineFlag } from 'react-icons/ai';
 
-import { PriorityModal } from './PriorityModal';
+import { PriorityModal } from '../PriorityModal';
+import { TodoEntryFooterButton } from './TodoEntryFooterButton';
 
 type Props = {
   isDisabled: boolean;
@@ -19,14 +20,11 @@ export const PriorityButton: React.FC<Props> = ({
 
   return (
     <>
-      <IconButton
-        aria-label="Add priority"
+      <TodoEntryFooterButton
+        label="Set priority"
         icon={<AiOutlineFlag />}
         isDisabled={isDisabled}
         onClick={onOpen}
-        size="lg"
-        variant="ghost"
-        mx="1"
       />
       <PriorityModal
         isOpen={isOpen}

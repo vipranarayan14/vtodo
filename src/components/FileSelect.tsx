@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Input, Stack } from '@chakra-ui/react';
 
-import { DropboxChooserButton } from './DropboxChooserButton';
+import { DropboxChooserButton } from './buttons/DropboxChooserButton';
 
 type Props = {
   apiKey: string;

@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { useDisclosure, IconButton } from '@chakra-ui/react';
+import { useDisclosure } from '@chakra-ui/react';
 
-import { CollectionsModal } from './CollectionsModal';
+import { CollectionsModal } from '../CollectionsModal';
+import { TodoEntryFooterButton } from './TodoEntryFooterButton';
 
 type Props = {
   variant: string;
@@ -23,14 +24,11 @@ export const CollectionsButton: React.FC<Props> = ({
 
   return (
     <>
-      <IconButton
-        aria-label={`Select ${variant}`}
+      <TodoEntryFooterButton
+        label={`Add ${variant.toLowerCase()}`}
         icon={icon}
         isDisabled={isDisabled}
         onClick={onOpen}
-        size="lg"
-        variant="ghost"
-        mr="1"
       />
       <CollectionsModal
         variant={variant}
