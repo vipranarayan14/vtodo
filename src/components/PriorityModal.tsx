@@ -4,14 +4,17 @@ import {
   Button,
   Grid,
   GridItem,
+  Icon,
   Modal,
   ModalBody,
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  Text,
 } from '@chakra-ui/react';
 
 import { getPriorityColor } from '../utils/getPriorityColor';
+import { AiFillFlag, AiOutlineFlag } from 'react-icons/ai';
 
 type Props = {
   isOpen: boolean;
@@ -62,6 +65,7 @@ export const PriorityModal: React.FC<Props> = ({
           <Grid templateColumns="repeat(4, 1fr)" gap={4} mt="2" mb="4">
             <GridItem colSpan={4}>
               <Button
+                leftIcon={<AiOutlineFlag />}
                 onClick={() => handleClick('')}
                 width="100%"
                 justifyContent="left"
@@ -77,15 +81,24 @@ export const PriorityModal: React.FC<Props> = ({
               return (
                 <GridItem colSpan={4} key={priority.symbol}>
                   <Button
+                    leftIcon={
+                      <Icon as={AiFillFlag} color={priorityColor.light} />
+                    }
                     onClick={() => handleClick(priority.symbol)}
                     width="100%"
                     justifyContent="left"
-                    color="white"
-                    bg={priorityColor.light}
-                    _hover={{ bg: priorityColor.dark }}
-                    _active={{ bg: priorityColor.darker }}
                   >
-                    {`${priority.symbol} | ${priority.info}`}
+                    {priority.symbol}
+
+                    <Text
+                      as="span"
+                      fontWeight="normal"
+                      fontSize="xs"
+                      display="block"
+                      ml="1"
+                    >
+                      {`(${priority.info})`}
+                    </Text>
                   </Button>
                 </GridItem>
               );
