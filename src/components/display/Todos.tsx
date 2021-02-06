@@ -69,6 +69,12 @@ export const Todos: React.FC<TodosProps> = ({ todos, updateTodos }) => {
     None: todosClassifiedByDueDate.unclassified,
   };
 
+  const deleteTodo = (todoId: string) => {
+    $todos.removeItemById(todoId);
+
+    updateTodos($todos);
+  };
+
   const onChange = () => {
     updateTodos($todos);
   };
@@ -86,7 +92,12 @@ export const Todos: React.FC<TodosProps> = ({ todos, updateTodos }) => {
             </Box>
           </HStack>
           {todos.map((todo: TodoTxt.Todo) => (
-            <Todo todo={todo} key={todo.id()} onChange={onChange} />
+            <Todo
+              todo={todo}
+              key={todo.id()}
+              onChange={onChange}
+              deleteTodo={deleteTodo}
+            />
           ))}
         </VStack>
       ))}
