@@ -28,7 +28,7 @@ export const TodosManager: React.FC<Props> = ({
 
   const toast = useToast();
 
-  const updateTodos = async ($todos: TodoTxt.Todos) => {
+  const updateTodos = async ($todos: TodoTxt.Todos): Promise<boolean> => {
     const contents = $todos.render();
 
     const [newFile, error] = await dbxClient.updateFile(
@@ -40,12 +40,14 @@ export const TodosManager: React.FC<Props> = ({
     if (error) {
       toast({
         title: 'Update error',
-        description: "Changes not saved to 'todo.txt'",
+        description: "Changes not saved to 'todo.txt'.",
         status: 'error',
         isClosable: true,
       });
 
-      return console.log(error);
+      console.error(error);
+
+      return false;
     }
 
     setFile(newFile);
@@ -54,13 +56,14 @@ export const TodosManager: React.FC<Props> = ({
     const newTodos = TodoTxt.parseFile(newFile.contents);
 
     setTodos(newTodos);
+
+    return true;
   };
 
   const addTodo = (todoString: string) => {
-    console.log(todoString);
-
     todos.addItem(todoString);
-    updateTodos(todos);
+
+    return updateTodos(todos);
   };
 
   useEffect(() => {
