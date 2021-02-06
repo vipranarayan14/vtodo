@@ -1,12 +1,20 @@
 import React from 'react';
 
-import { Box, Checkbox, HStack, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Checkbox,
+  HStack,
+  IconButton,
+  Spacer,
+  Text,
+} from '@chakra-ui/react';
 
 import { TodoTxt } from '../../lib/todotxt';
 
 import { Collections } from './Collections';
 
 import { getPriorityColor } from '../../utils/getPriorityColor';
+import { AiOutlineEllipsis } from 'react-icons/ai';
 
 type Props = {
   todo: TodoTxt.Todo;
@@ -32,26 +40,34 @@ export const Todo: React.FC<Props> = ({ todo, onChange }) => {
 
   return (
     <Box
-      padding="5"
       shadow="base"
       bg="white"
       rounded="md"
       borderLeft="5px solid"
       borderLeftColor={getPriorityColor(priority).light}
     >
-      <HStack spacing="3" align="start">
+      <HStack spacing="0" align="start">
         <Checkbox
           size="lg"
-          mt="2.5px"
+          pt="1.1rem" // manually align checkbox with (the first line of) the todo text
+          px="4"
           defaultIsChecked={isComplete}
           onChange={handleCheck}
         ></Checkbox>
-        <Box>
+        <Box py="4">
           <Text as="span" mr="1">
             {text}
           </Text>
           <Collections contexts={contexts} projects={projects} />
         </Box>
+        <Spacer />
+        <IconButton
+          aria-label="menu"
+          icon={<AiOutlineEllipsis fontSize="1.5rem" />}
+          variant="ghost"
+          size="sm"
+          mt="-2"
+        />
       </HStack>
     </Box>
   );
