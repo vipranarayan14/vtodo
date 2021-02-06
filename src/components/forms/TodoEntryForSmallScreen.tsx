@@ -38,6 +38,7 @@ export const TodoEntryForSmallScreen: React.FC<Props> = ({
       bottom="30px"
       right="20px"
       isRound
+      zIndex={1} // to rise it above other btns
     ></IconButton>
 
     <Drawer isOpen={isOpen} onClose={onClose} placement="bottom">
