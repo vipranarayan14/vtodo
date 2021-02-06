@@ -177,6 +177,12 @@ export let TodoTxt = (function () {
       output.length = items.length;
     };
 
+    output.removeItemById = function (id) {
+      items = items.filter((item) => item.id() !== id);
+
+      output.length = items.length;
+    };
+
     output.addItem = function (item) {
       if (typeof item.render === 'function') item = item.render();
       item = parseLineInternal(item, getLineNumber);

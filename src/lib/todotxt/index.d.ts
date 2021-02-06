@@ -86,6 +86,7 @@ declare namespace TodoTxt {
       sortFields?: sortFieldOptions[] | sortField[]
     ) => string;
     removeItem: (item: Todo | string, allMatches: boolean) => void;
+    removeItemById: (id: string) => void;
     addItem: (item: Todo | string) => Todo;
     collections: (includeCompleted?: boolean) => collections;
   }
