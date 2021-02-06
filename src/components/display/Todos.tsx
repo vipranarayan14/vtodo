@@ -75,8 +75,8 @@ export const Todos: React.FC<TodosProps> = ({ todos, updateTodos }) => {
 
   return (
     <>
-      {Object.entries(todosSorted).map(([sectionTitle, todos]) => (
-        <VStack align="stretch" mb="7">
+      {Object.entries(todosSorted).map(([sectionTitle, todos], index) => (
+        <VStack align="stretch" mb="7" key={index}>
           <HStack>
             <Heading as="h2" fontSize="l" mb="1">
               {sectionTitle}
