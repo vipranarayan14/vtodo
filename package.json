@@ -22,7 +22,7 @@
     "react": "^17.0.1",
     "react-calendar": "3.2.1",
     "react-dom": "^17.0.1",
-    "react-icons": "^3.11.0",
+    "react-icons": "4.2.0",
     "react-scripts": "4.0.1",
     "typescript": "^3.9.7",
     "use-dropbox-chooser": "0.0.4",
